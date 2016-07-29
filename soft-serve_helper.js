@@ -1,39 +1,55 @@
-var log = console.log.bind(console),
-	dir = console.dir.bind(console);
+window.addEventListener('DOMContentLoaded', init, false);
 
-function template (tpl, data) {
-	for (let key in data) {
-		if (typeof data[key] === 'object') {
-			var info = [];
+function init () {
+	( function (window) {
 
-			for (let sKey in data[key]) {
-				info.push(data[key][sKey]);
+		function constructor () {
+			var module = {};
+			
+			module.log = console.log.bind(console),
+			module.dir = console.dir.bind(console);
+
+			module.template = function (tpl, data) {
+				for (let key in data) {
+					if (typeof data[key] === 'object') {
+						var info = [];
+
+						for (let sKey in data[key]) {
+							info.push(data[key][sKey]);
+						}
+
+						tpl = tpl.replace(':' + key, info);
+
+						continue;
+					}
+					data[key] = this.valid(data[key]);
+					tpl = tpl.replace(':' + key, data[key]);
+				}
+
+				return tpl;
+			};
+
+			module.valid = function (string) {
+				if (string <= 0) {
+					string = 'No information';
+				}
+
+				return string;
 			}
 
-			tpl = tpl.replace(':' + key, info);
+			module.extend = function (Parent, Child) {
+				var Surrogat = function(){};
+				Surrogat.prototype = Parent.prototype;
 
-			continue;
+				Child.prototype = new Surrogat();
+				Child.prototype.constuctor = Child;
+				Child.prototype.super = Parent.prototype;
+			}
+
+			return module;
 		}
-		data[key] = validateInformation(data[key]);
-		tpl = tpl.replace(':' + key, data[key]);
-	}
 
-	return tpl;
-}
+		window.SS = constructor();
 
-function validateInformation (string) {
-	if (string <= 0) {
-		string = 'No information';
-	}
-
-	return string;
-}
-
-function extend (Parent, Child) {
-	var Surrogat = function(){};
-	Surrogat.prototype = Parent.prototype;
-
-	Child.prototype = new Surrogat();
-	Child.prototype.constuctor = Child;
-	Child.prototype.super = Parent.prototype;
+	})(window);
 }
