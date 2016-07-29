@@ -1,0 +1,11 @@
+{
+  "name": "soft-serve_helper",
+  "description": "this lib will help you :3"
+  "authors": [
+  	"Kirill Kozak <vk.com/kirille>"
+  ],
+  "repository": {
+  	"type": "git",
+  	"url": "/"
+  }
+}
