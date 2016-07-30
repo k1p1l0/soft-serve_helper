@@ -1,11 +1,13 @@
 {
-  "name": "soft-serve_helper",
-  "description": "this lib will help you :3"
-  "authors": [
-  	"Kirill Kozak <vk.com/kirille>"
+  "name": "sshelp.js",
+  "main": "sshelp.js",
+  "version": "0.1.1",
+  "description": "Lib will help you",
+  "keywords": [
+    "javascript"
   ],
-  "repository": {
-  	"type": "git",
-  	"url": "/"
-  }
+  "authors": [
+    "Kirill Kozak"
+  ],
+  "license": "MIT"
 }
