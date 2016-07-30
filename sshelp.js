@@ -26,6 +26,6 @@
 		return module;
 	}
 
-	window.SS = constructor();
+	window.SS = Constructor();
 
 })(typeof window !== "undefined" ? window : this);
