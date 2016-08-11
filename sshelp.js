@@ -23,9 +23,17 @@
 			Child.prototype.super = Parent.prototype;
 		};
 
+		module.getTypeString = function (obj) {
+		  	return Object.prototype.toString.call(obj).slice(8, -1);
+		};
+
+		module.createId = function (length) {
+			return Math.random().toString(36).substring(7);
+		};
+
 		return module;
 	}
 
 	window.SS = Constructor();
 
-})(typeof window !== "undefined" ? window : this);
+} )(typeof window !== "undefined" ? window : this);
